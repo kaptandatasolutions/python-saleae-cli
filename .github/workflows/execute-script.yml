@@ -1,0 +1,34 @@
+name: Exécuter le script Python sur le serveur local
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configurer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Installer les dépendances
+        run: |
+          pip install -r requirements.txt
+
+      - name: Exécuter le script Python
+        run: |
+          python creation_signal.py > rapport.txt
+
+      - name: Commit et push du rapport
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add rapport.txt
+          git commit -m "Ajouter le rapport d'exécution"
+          git push
