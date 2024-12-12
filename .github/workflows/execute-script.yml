@@ -15,7 +15,7 @@ jobs:
       - name: Configurer Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.11'
+          python-version: '3.11'
 
       - name: Installer les dépendances
         run: |
