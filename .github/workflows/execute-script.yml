@@ -3,7 +3,7 @@ name: Exécuter le script Python sur le serveur local
 on:
   push:
     branches:
-      - main
+      - master 
 
 jobs:
   run-script:
